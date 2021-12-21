@@ -1,5 +1,12 @@
 # README
 
+Backend initialized with:
+  ```rails new like-2-laugh-backend --database=postgresql --api``` 
+
+Frontend initialized with:
+  ```npx create-react-app like-2-laugh-frontend```
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
