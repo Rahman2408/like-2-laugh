@@ -3,20 +3,20 @@ require 'json'
 
 class JokeApi
 
-  attr_reader :response, :joke, :joke_id 
+  attr_reader :response, :joke, :joke_id, :jokes
 
-  @@all = []
+
   
   
   def initialize()
-    url = 'https://icanhazdadjoke.com/'
+    url = 'https://icanhazdadjoke.com/search'
    
 
     response = Faraday.get(url, {a: 1}, {'Accept' => 'application/json'})
     @response = JSON.parse(response.body, symbolize_names: true)
-    @@all << @response
-    @joke = @response[:joke]
-    @joke_id = @response[:id]
+    @jokes = @response[:results]
+    # @joke = @response[:joke]
+    # @joke_id = @response[:id] single jokes
   end
 
   def self.all
@@ -24,7 +24,8 @@ class JokeApi
   end
 
   def save_joke
-    Joke.find_or_create_by(joke: self.joke, joke_id: self.joke_id)
+    self.jokes.map{|j| Joke.find_or_create_by(joke: j[:joke], joke_id: j[:id])}  #only for adding multiple jokes to DB
+    # Joke.find_or_create_by(joke: self.joke, joke_id: self.joke_id) --use for single joke
   end
 
 
