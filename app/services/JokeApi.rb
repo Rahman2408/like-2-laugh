@@ -24,8 +24,9 @@ class JokeApi
   end
 
   def save_joke
-    Joke.web_jokes <<  self.response
+    Joke.find_or_create_by(joke: self.joke, joke_id: self.joke_id)
   end
+
 
   
 
@@ -48,3 +49,4 @@ end
 
 # response = http.request(request)
 # puts response.read_body
+
