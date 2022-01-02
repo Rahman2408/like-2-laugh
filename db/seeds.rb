@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+test = JokeApi.new 
+test.save_joke
+Joke.create(joke: "this is a joke made by the user in hopes they're funny")
+Joke.create(joke: "ANOTHER joke made by the user in hopes they're funny")
