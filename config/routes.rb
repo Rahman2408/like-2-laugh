@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   resources :jokes
   resources :sessions, only: [:create]
   get '/myjokes', to: 'jokes#myjokes'
+  get '/me', to: 'sessions#autoLogin'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

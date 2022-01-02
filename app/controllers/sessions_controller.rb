@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  def login
+  def create
     user = User.find_by_username(params[:username])
 
     if user && user.authenticate(params[:password])
@@ -10,6 +10,10 @@ class SessionsController < ApplicationController
     end
   end
 
+  def autoLogin
+    # byebug
+    render json: {user: UserSerializer.new(logged_in_user), token: encode_token(logged_in_user.id)}
+  end
 
   
 end
