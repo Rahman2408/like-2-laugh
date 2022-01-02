@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     if user.save
       render json: user 
     else 
-      render json: {errors: user.errors.full_messages.to_sentence}
+      render json: {errors: user.errors.full_messages.to_sentence}, status: :unprocessable_entity
     end
   end
 

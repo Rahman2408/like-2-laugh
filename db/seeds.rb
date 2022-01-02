@@ -7,5 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 test = JokeApi.new 
 test.save_joke
-Joke.create(joke: "this is a joke made by the user in hopes they're funny")
-Joke.create(joke: "ANOTHER joke made by the user in hopes they're funny")
+Joke.find_or_create_by(joke: "this is a joke made by the user in hopes they're funny")
+Joke.find_or_create_by(joke: "ANOTHER joke made by the user in hopes they're funny")
