@@ -14,4 +14,9 @@ class JokesController < ApplicationController
     my_jokes = Joke.where(joke_id: nil)
     render json: JSON.pretty_generate(my_jokes.as_json)
   end
+
+  def joke_lib
+    jokes = JokeRapidApi.new
+    render json: JSON.pretty_generate(JSON.parse(jokes.response.body, symbolize_names: true))
+  end
 end

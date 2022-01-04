@@ -9,14 +9,14 @@ class JokeApi
   
   
   def initialize()
-    url = 'https://icanhazdadjoke.com/search'
+    url = 'https://icanhazdadjoke.com/'
    
 
     response = Faraday.get(url, {a: 1}, {'Accept' => 'application/json'})
     @response = JSON.parse(response.body, symbolize_names: true)
     @jokes = @response[:results]
     # @joke = @response[:joke]
-    # @joke_id = @response[:id] single jokes
+    # @joke_id = @response[:id]
   end
 
   def self.all

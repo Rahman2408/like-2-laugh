@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
   
   def encode_token(user_id)
     JWT.encode({user_id: user_id}, ENV["JWT_SECRET"])
@@ -8,7 +9,14 @@ class ApplicationController < ActionController::API
     User.find(decoded_token["user_id"])
   end
 
-  
+  def render_unprocessable_entity(invalid)
+    render json: {errors: invalid.record.errors.full_messages.to_sentence}, status: :unprocessable_entity
+  end
+
+  def render_user_with_token(user)
+    render json: {user: ActiveModelSerializers::SerializableResource.new(user, serializer: UserSerializer), token: encode_token(user.id)}
+  end
+
   private 
   
   def get_token
