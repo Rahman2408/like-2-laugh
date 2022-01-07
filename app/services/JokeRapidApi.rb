@@ -22,11 +22,13 @@ class JokeRapidApi
     request = Net::HTTP::Get.new(url)
     request["x-rapidapi-host"] = ENV['JOKE_API_HOST']
     request["x-rapidapi-key"] = ENV['JOKE_API_KEY']
-    @response = http.request(request)
-    @response.read_body
+    response = http.request(request)
+    @response = JSON.parse(response.body, symbolize_names: true)
+    @jokes = @response[:data]
   end
 
-  def all_jokes
-    @@ALL_JOKES
+  def save_joke
+    self.jokes.map{|j| Joke.find_or_create_by(joke_setup: j[:joke_text], joke_punchline: j[:joke_punchline], joke_id: j[:joke_id])}  #only for adding multiple jokes to DB
+    # Joke.find_or_create_by(joke: self.joke, joke_id: self.joke_id) --use for single joke
   end
 end

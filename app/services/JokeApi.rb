@@ -4,9 +4,6 @@ require 'json'
 class JokeApi
 
   attr_reader :response, :joke, :joke_id, :jokes
-
-
-  
   
   def initialize()
     url = 'https://icanhazdadjoke.com/'
