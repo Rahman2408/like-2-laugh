@@ -16,9 +16,15 @@ class UserJokesController < ApplicationController
   end
 
 
+  def destroy
+    UserJoke.find(params[:id]).destroy 
+    jokes = UserJoke.all
+    render json:  JSON.pretty_generate(jokes.as_json)
+  end
+  
   private 
 
   def joke_params
-    params.permit(:joke_setup, :joke_punchline)
+    params.permit(:joke_setup, :joke_punchline, :user_jokes)
   end
 end
