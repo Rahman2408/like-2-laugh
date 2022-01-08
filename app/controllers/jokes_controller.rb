@@ -10,13 +10,14 @@ class JokesController < ApplicationController
     render json: JSON.pretty_generate(joke.as_json)
   end
 
-  def myjokes
-    my_jokes = Joke.where(joke_id: nil)
-    render json: JSON.pretty_generate(my_jokes.as_json)
-  end
+  # def myjokes
+  #   my_jokes = UserJoke.all
+  #   render json: JSON.pretty_generate(my_jokes.as_json)
+  # end
 
-  def joke_lib
-    jokes = Joke.all
-    render json: JSON.pretty_generate(jokes.as_json)
-  end
+  # def random_joke
+    
+  #   joke= Joke.find(rand(1..Joke.all.length))
+  #   render json: JSON.pretty_generate(joke.as_json)
+  # end
 end

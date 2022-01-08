@@ -5,7 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+user = User.create(username: 'rahman', password: 'rahman', email:'rahman@email.com')
 test = JokeRapidApi.new 
 test.save_joke
-Joke.find_or_create_by(joke_setup: "this is a joke made by the user in hopes they're funny")
-Joke.find_or_create_by(joke_setup: "ANOTHER joke made by the user in hopes they're funny")
+UserJoke.create(joke_setup: "this is a joke made by the user in hopes they're funny", joke_punchline: 'this is the hilarious punchline', user: user)
+UserJoke.create(joke_setup: "ANOTHER joke made by the user in hopes they're funny", joke_punchline: 'this is ANOTHER hilarious punchline', user: user)

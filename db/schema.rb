@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_04_171439) do
+ActiveRecord::Schema.define(version: 2022_01_08_011303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 2022_01_04_171439) do
     t.string "joke_punchline"
   end
 
+  create_table "user_jokes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "joke_id"
+    t.string "joke_punchline"
+    t.string "joke_setup"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_jokes_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -31,4 +41,5 @@ ActiveRecord::Schema.define(version: 2022_01_04_171439) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "user_jokes", "users"
 end
