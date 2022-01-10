@@ -11,7 +11,6 @@ class SessionsController < ApplicationController
   end
 
   def autoLogin
-    # byebug
     render_user_with_token(logged_in_user)
   end
 

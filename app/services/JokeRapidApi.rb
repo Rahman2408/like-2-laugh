@@ -3,13 +3,7 @@ require 'net/http'
 require 'openssl'
 
 class JokeRapidApi
-
-
-
   attr_reader :response, :jokeP, :jokeT, :joke_id, :jokes
-
-
-
   
   def initialize()
 
@@ -29,6 +23,5 @@ class JokeRapidApi
 
   def save_joke
     self.jokes.map{|j| Joke.find_or_create_by(joke_setup: j[:joke_text], joke_punchline: j[:joke_punchline], joke_id: j[:joke_id])}  #only for adding multiple jokes to DB
-    # Joke.find_or_create_by(joke: self.joke, joke_id: self.joke_id) --use for single joke
   end
 end

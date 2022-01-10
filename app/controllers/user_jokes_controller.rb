@@ -1,12 +1,10 @@
 class UserJokesController < ApplicationController
   def index
-    # byebug
     jokes =  UserJoke.where(user_id: logged_in_user.id)
     render json:  JSON.pretty_generate(jokes.as_json)
   end
 
   def create
-    # byebug
     joke = logged_in_user.user_jokes.create(joke_params)
     render json: JSON.pretty_generate(joke.as_json)
   end
