@@ -1,6 +1,7 @@
 class JokesController < ApplicationController
 
   def index
+    # byebug
     jokes = Joke.all
     render json:  JSON.pretty_generate(jokes.as_json)
   end
